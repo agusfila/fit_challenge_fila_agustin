@@ -1,0 +1,4 @@
+com\fit\Fila_Agustin_Challenge\apirest\ApiApplication.class
+com\fit\Fila_Agustin_Challenge\coinapi\RestMethods.class
+com\fit\Fila_Agustin_Challenge\coinapi\CoinApiSvc.class
+com\fit\Fila_Agustin_Challenge\coinapi\CoinApiInt.class
