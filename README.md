@@ -17,3 +17,10 @@ FRONTEND:
   - En el archivo proxy.conf.json indicar el puerto en el que se levanta el backend (Por defecto: 8080)
   - ![image](https://user-images.githubusercontent.com/62355006/154134814-3692c369-a5a1-4706-a7f3-2ad342fa8a14.png)
 
+``` {
+  "/api/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}```
