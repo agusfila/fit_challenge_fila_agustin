@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="bg-dark h-100 w-100 d-flex justify-content-center align-items-center p-4" style="background-color: var(--bs-dark);">
+    <div class="container rounded w-50 p-4" style="background-color: var(--bs-gray-dark); box-shadow: 0px 0px 10px 10px #302f2c; max-width: 500px;">
+        <h2 class="text-center" style="color: var(--bs-yellow);"><strong>Iniciar Sesion</strong></h2>
+        <div class="m-4 row">
+            <input [(ngModel)]="pNombreUsuario" class="form-control text-center" type="text" placeholder="Nombre de Usuario"/>
+        </div>
+        <div class="m-4 row">
+            <input [(ngModel)]="pClave" class="form-control text-center" type="password" placeholder="Contraseña"/>
+        </div>
+        <div *ngIf="estadoError" class="row rounded bg-danger border-danger text-center text-light m-4 p-2">
+            <p class="m-0">{{ mensajeError }}</p>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="mx-2 px-2 col-auto">
+                <button type="button" (click)="iniciarSesion()" class="btn text-light" style="background-color: var(--bs-yellow);">Iniciar Sesion</button>
+            </div>
+            <div class="mx-2 px-2 col-auto">
+                <button type="button" class="btn text-light" style="background-color: var(--bs-green);" routerLink="/auth/crearCuenta">Registrate</button>
+            </div>
+        </div>
+    </div>
+</div>

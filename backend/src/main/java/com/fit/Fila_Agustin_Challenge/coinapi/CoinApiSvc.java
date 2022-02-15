@@ -1,5 +1,6 @@
 package com.fit.Fila_Agustin_Challenge.coinapi;
 
+import com.fit.Fila_Agustin_Challenge.exceptions.CoinApiSvcException;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -12,7 +13,7 @@ public class CoinApiSvc {
     private static CoinApiSvc instancia = null;
     private static int maximaCantidadRegistrosDefault = 200;
     private static final String urlApi = "https://rest.coinapi.io/v1/";
-    private static final String token = "CEA0B191-09B0-463E-B3CB-20B0749E4C43";
+    private static final String token = "6DE078B1-427D-4EAF-87A7-C0490BE4FE21";
     private Retrofit retrofit;
 
 
@@ -35,12 +36,14 @@ public class CoinApiSvc {
         CoinApiInt coinApiInt                       = this.retrofit.create(CoinApiInt.class);
         Call<List<Exchange>> requestExchanges       = coinApiInt.listarExchanges(token);
         Response<List<Exchange>> responseExchanges  = requestExchanges.execute();
+        this.validarResponse(responseExchanges.body());
         return responseExchanges.body();
     }
     public List<ExchangeIcon> listarIconosExchanges(String iconSize) throws IOException {
         CoinApiInt coinApiInt                           = this.retrofit.create(CoinApiInt.class);
         Call<List<ExchangeIcon>> requestExchanges       = coinApiInt.listarIconosExchanges(token, iconSize);
         Response<List<ExchangeIcon>> responseExchanges  = requestExchanges.execute();
+        this.validarResponse(responseExchanges.body());
         return responseExchanges.body();
     }
 
@@ -48,6 +51,7 @@ public class CoinApiSvc {
         CoinApiInt coinApiInt                   = this.retrofit.create(CoinApiInt.class);
         Call<List<Asset>> requestAssets         = coinApiInt.listarAssets(token);
         Response<List<Asset>> responseAssets    = requestAssets.execute();
+        this.validarResponse(responseAssets.body());
         return responseAssets.body();
     }
 
@@ -55,6 +59,7 @@ public class CoinApiSvc {
         CoinApiInt coinApiInt                           = this.retrofit.create(CoinApiInt.class);
         Call<List<AssetIcon>> requestIconsAssets        = coinApiInt.listarIconosAssets(token, iconSize);
         Response<List<AssetIcon>> responseIconsAssets   = requestIconsAssets.execute();
+        this.validarResponse(responseIconsAssets.body());
         return responseIconsAssets.body();
     }
 
@@ -62,6 +67,11 @@ public class CoinApiSvc {
         CoinApiInt coinApiInt                       = this.retrofit.create(CoinApiInt.class);
         Call<ExchangeRate> requestExchangeRate      = coinApiInt.buscarAssetExchangeRate(token, idAssetBase, idAssetQuote);
         Response<ExchangeRate> responseExchangeRate = requestExchangeRate.execute();
+        this.validarResponse(responseExchangeRate.body());
         return responseExchangeRate.body();
+    }
+
+    public void validarResponse(Object response){
+        if(response == null) throw new CoinApiSvcException("El token supero el numero maximo de llamadas a la API de CoinApi o es invalido");
     }
 }

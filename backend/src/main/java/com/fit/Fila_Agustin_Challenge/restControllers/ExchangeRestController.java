@@ -1,5 +1,6 @@
 package com.fit.Fila_Agustin_Challenge.restControllers;
 
+import com.fit.Fila_Agustin_Challenge.exceptions.CoinApiSvcException;
 import com.fit.Fila_Agustin_Challenge.models.ExchangeModel;
 import com.fit.Fila_Agustin_Challenge.services.ExchangeService;
 import com.google.gson.Gson;
@@ -28,11 +29,11 @@ public class ExchangeRestController {
     public ResponseEntity<Object> top3Exchanges(@RequestParam(required = false) Optional<String> iconSize) throws IOException {
         Map<String, String> response    = new HashMap<>();
         Gson gson                       = new Gson();
+        JSONObject json                 = new JSONObject();
         try {
             List<ExchangeModel> exchanges = exchangeService.top3Exchanges(iconSize.isPresent() ? iconSize.get() : "512");
             return new ResponseEntity<>(gson.toJson(exchanges), HttpStatus.ACCEPTED);
         } catch (Exception e){
-            JSONObject json = new JSONObject();
             json.put("mensaje", "Error: " + e.getMessage());
             return new ResponseEntity(json.toString(), HttpStatus.BAD_REQUEST);
         }

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
 export class BaseService {
@@ -9,10 +9,21 @@ export class BaseService {
 
     getHeaderOptions(){
         let options = {
-            headers : {
+            headers : new HttpHeaders({
                 'Content-Type': 'application/json'
-            }
+            })
         }
         return options;
+    }
+
+    getHeaderTokenOptions(){
+        let options = {
+            headers : new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            })
+        }
+        return options;
+
     }
 }

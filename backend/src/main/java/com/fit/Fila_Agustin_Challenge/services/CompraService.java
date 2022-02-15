@@ -1,11 +1,16 @@
 package com.fit.Fila_Agustin_Challenge.services;
 
 import com.fit.Fila_Agustin_Challenge.entities.Compra;
+import com.fit.Fila_Agustin_Challenge.entities.Usuario;
+import com.fit.Fila_Agustin_Challenge.models.CalcularPrecio;
+import com.fit.Fila_Agustin_Challenge.models.NuevaCompra;
 import com.fit.Fila_Agustin_Challenge.repositories.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompraService {
@@ -15,23 +20,26 @@ public class CompraService {
     @Autowired
     private UsuarioService usuarioService;
 
-    public Compra comprar(String idUsuario, String idAsset, String idExchange, Double cantidadDolar, Double comisionExchange, Double rate){
+    public Compra comprar(NuevaCompra nuevaCompra){
         Compra compra       = new Compra();
-        try {
-            Double cantidadAsset = (cantidadDolar * (1 - comisionExchange)) / rate;
-            Double comisionTotal = cantidadDolar * comisionExchange;
-            compra.setAssetId(idAsset);
-            compra.setExchangeId(idExchange);
-            compra.setFecha(new Date());
-            compra.setCostoTotal(cantidadDolar);
-            compra.setCantidad(cantidadAsset);
-            compra.setUsuario(usuarioService.buscarPorId(idUsuario));
-            compra.setComisionTotal(comisionTotal);
-            compra.setValorUnitarioUSD(rate);
-            compra = compraRepository.save(compra);
-            return compra;
-        } catch (Exception e){
-            return null;
-        }
+        compra.setAssetId(nuevaCompra.getAsset_id());
+        compra.setExchangeId(nuevaCompra.getExchange_id());
+        compra.setFecha(new Date());
+        compra.setCostoTotal(nuevaCompra.getCantidadDolar());
+        compra.setCantidad(nuevaCompra.getCantidad());
+        compra.setUsuario(usuarioService.buscarPorId(nuevaCompra.getIdUsuario()).get());
+        compra.setComisionTotal(nuevaCompra.getComision() * nuevaCompra.getCantidadDolar());
+        compra.setValorUnitarioUSD(nuevaCompra.getValorUnitarioUSD());
+        compra = compraRepository.save(compra);
+        return compra;
+    }
+
+    public List<Compra> buscarPorUsuario(String idUsuario){
+        List<Compra> comprasUsuario = compraRepository.buscarPorUsuario(idUsuario);
+        return comprasUsuario;
+    }
+
+    public Double calcularPrecioUSD(CalcularPrecio calcularPrecio){
+        return (calcularPrecio.getCantidad() * calcularPrecio.getValorUnitarioUSD()) * (1 + calcularPrecio.getComision());
     }
 }

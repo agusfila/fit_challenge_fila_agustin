@@ -1,0 +1,20 @@
+.iconoAsset{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.asset{
+    transition: all .25s linear;
+}
+
+.assetSinSeleccionar{
+    transform: scale(1);
+}
+.assetSinSeleccionar:hover{
+    transform: scale(1.02);
+}
+
+.assetSeleccionado{
+    border: 3px solid green;
+}

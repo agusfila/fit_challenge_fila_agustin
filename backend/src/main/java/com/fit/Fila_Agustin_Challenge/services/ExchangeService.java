@@ -23,16 +23,15 @@ public class ExchangeService {
         List<ExchangeModel> exchangeModels          = new ArrayList<ExchangeModel>();
         AtomicReference<Double> comisionExchange    = new AtomicReference<>(0.25);
         finalExchanges.forEach(unExchange -> {
-            Optional<ExchangeIcon> opExchangeIcon =  Optional.of(iconosExchanges.stream().filter(unIcono ->
-                    finalExchanges.stream().map(otroExchange ->
-                        otroExchange.getExchange_id()).collect(Collectors.toList()).contains(unIcono.getExchange_id())).collect(Collectors.toList()).get(0));
+            List<ExchangeIcon> opExchangeIcon =  iconosExchanges.stream().filter(unIcono ->
+                    unIcono.getExchange_id().equals(unExchange.getExchange_id())).collect(Collectors.toList());
             exchangeModels.add(
                     new ExchangeModel(
                             unExchange.getExchange_id(),
                             unExchange.getWebsite(),
                             unExchange.getName(),
                             comisionExchange.get(),
-                            opExchangeIcon.isPresent() ? opExchangeIcon.get().getUrl() : ""));
+                            opExchangeIcon.size() > 0 ? opExchangeIcon.get(0).getUrl() : ""));
             comisionExchange.updateAndGet(v -> v + 0.15);
         });
         return exchangeModels;

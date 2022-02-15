@@ -1,0 +1,7 @@
+<div style="height: max-content;background-color: #1c1c1c; " class="d-flex justify-content-between">
+    <div><img src="./fit.png"/></div>
+    <div class="d-flex flex-column px-4 py-1">
+        <h5 (click)="cerrarSesion()" style="color: var(--bs-yellow); cursor: pointer;" class="">CERRAR SESION </h5>
+        <h6 *ngIf="usuario" class="text-light">{{usuario.nombre}} {{usuario.apellido}} <span class="text-secondary">({{usuario.nombreUsuario}})</span></h6>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="modal fade" id="modalCompra_{{compra.id}}" [attr.aria-hidden]="'true'"  tabindex="-1" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalle de su compra</h4>
+                <button type="button" class="close" [attr.data-bs-dismiss]="'modal'" [attr.aria-label]="'Close'">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li><strong>Usuario</strong>: {{compra.usuario.nombre}} {{compra.usuario.apellido}}</li>
+                    <li><strong>Asset</strong>: {{compra.cantidad}} {{compra.assetId}}</li>
+                    <li><strong>Comision Exchange ({{compra.exchangeId}})</strong>: {{compra.comisionTotal}}</li>
+                    <li><strong>Fecha</strong>: {{compra.fecha}}</li>
+                    <li><strong>Costo total</strong>: {{compra.costoTotal}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#modalCompra_' + compra.id">
+    Ver detalle de la compra
+  </button>

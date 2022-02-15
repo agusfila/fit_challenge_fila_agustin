@@ -11,10 +11,13 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
-    @Query("SELECT a FROM Usuario a WHERE a.usuario = :nombreDeUsuario")
+    @Query("SELECT a FROM Usuario a WHERE a.nombreUsuario = :nombreDeUsuario")
     Optional<Usuario> buscarPorNombreDeUsuario(@Path("nombreDeUsuario")String nombreDeUsuario);
 
-    @Query("SELECT a FROM Usuario a WHERE a.usuario = :nombreDeUsuario AND a.clave = :clave")
+    @Query("SELECT a FROM Usuario a WHERE a.nombreUsuario = :nombreDeUsuario AND a.clave = :clave")
     Optional<Usuario> buscarPorCredenciales(@Path("nombreDeUsuario")String nombreDeUsuario, @Path("nombreDeUsuario")String clave);
+
+    @Query("SELECT a FROM Usuario a WHERE a.nombreUsuario = :mail")
+    Optional<Usuario> buscarPorMail(@Path("mail")String mail);
 
 }

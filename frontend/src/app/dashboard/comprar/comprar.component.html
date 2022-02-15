@@ -1,0 +1,36 @@
+<div style="max-width: 1200px;" class="mx-auto bg-dark p-4">
+    <div  class=" row border-bottom border-light">
+        <hr>
+        <div class="col-md-6">
+            <h2 class="text-light mx-3">Assets</h2>
+            <app-asset *ngFor="let asset of assets" 
+                style="cursor:pointer;" 
+                (click)="seleccionarAsset(asset.asset_id);" 
+                class="col-md-12" 
+                [asset]="asset">
+            </app-asset>
+        </div>
+        <div class="col-md-6" *ngIf="muestraExchanges">
+            <h2 class="text-light mx-3">Exchanges</h2>
+            <app-exchange *ngFor="let exchange of exchanges" 
+                style="cursor: pointer;" 
+                (click)="seleccionarExchange(exchange.exchange_id)" 
+                class="col-md-4"
+                [exchange]="exchange">
+            </app-exchange>
+        </div>
+    </div>
+    <div *ngIf="puedeComprar" class="col-md-12  my-4 pb-4  border-bottom border-light">
+        <div class="col-md-12 row text-center">
+            <div class="col-md-6">
+                <input [(ngModel)]="pCantidad" type="number" class="form-control" (change)="setCantidad()" placeholder="Cantidad"/>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-warning" (click)="comprarAsset()">Comprar</button>
+            </div>
+            <label id="precioEnUSD" class="text-light col-md-4"></label>
+        </div>
+    </div>
+    <app-modal-detalle-compra *ngIf="mostrarDetalleCompra" [compra]="ultimaCompra" class="text-center"></app-modal-detalle-compra>
+</div>
+<hr>

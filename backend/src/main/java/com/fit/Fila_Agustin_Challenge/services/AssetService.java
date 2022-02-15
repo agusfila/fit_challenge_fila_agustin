@@ -22,14 +22,14 @@ public class AssetService {
         finalAssets.forEach(unAsset -> {
             try {
                 ExchangeRate exchangeRate = CoinApiSvc.instancia().buscarAssetExchangeRate(unAsset.getAsset_id(), "USD");
-                Optional<AssetIcon> opAssetIcon =  Optional.of(assetsIcons.stream().filter(unIcono ->
-                        finalAssets.stream().map(otroAsset -> otroAsset.getAsset_id()).collect(Collectors.toList()).contains(unIcono.getAsset_id())).collect(Collectors.toList()).get(0));
+                List<AssetIcon> assetIcon =  assetsIcons.stream().filter(unIcono ->
+                        unIcono.getAsset_id().equals(unAsset.getAsset_id())).collect(Collectors.toList());
                 top5Assets.add( new AssetModel(
                     unAsset.getAsset_id(),
                     unAsset.getName(),
                     unAsset.getPrice_usd(),
                     exchangeRate.getRate(),
-                    opAssetIcon.isPresent() ? opAssetIcon.get().getUrl() : ""));
+                    assetIcon.size() > 0 ? assetIcon.get(0).getUrl() : ""));
             } catch (IOException e) {
                 e.printStackTrace();
             }
