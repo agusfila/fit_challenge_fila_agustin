@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,31 +25,27 @@ public class CompraRestController {
     private CompraService compraService;
 
     @PostMapping("/comprar")
-    public ResponseEntity<Object> comprar(@RequestBody()NuevaCompra nuevaCompra){
-        JSONObject respuesta    = new JSONObject();
-        Gson gson               = new Gson();
+    public ResponseEntity<HashMap<String, Object>> comprar(@RequestBody()NuevaCompra nuevaCompra){
+        HashMap<String, Object> response = new HashMap<>();
         try {
-            Compra compra = compraService.comprar(nuevaCompra);
-            return new ResponseEntity<>(compra, HttpStatus.ACCEPTED);
+            compraService.comprar(nuevaCompra);
+            response.put("mensaje", "Compra realizada con exito!");
+            return new ResponseEntity<HashMap<String, Object>>(response, HttpStatus.CREATED);
         } catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            response.put("mensaje", e.getMessage());
+            return new ResponseEntity<HashMap<String, Object>>(response, HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/calcularPrecioUSD")
-    public ResponseEntity<Double> calcularPrecio(@RequestBody CalcularPrecio calcularPrecio){
-        Double precioTotal = compraService.calcularPrecioUSD(calcularPrecio);
-        return new ResponseEntity<Double>(precioTotal, HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("/{idUsuario}")
-    public ResponseEntity<Object> buscarPorId(@PathVariable("idUsuario")String idUsuario){
-        Gson gson = new Gson();
-        try{
-            List<Compra> compras = compraService.buscarPorUsuario(idUsuario);
-            return new ResponseEntity<Object>(gson.toJson(compras), HttpStatus.ACCEPTED);
+    public ResponseEntity<HashMap<String, Object>> calcularPrecio(@RequestBody CalcularPrecio calcularPrecio){
+        HashMap<String, Object> response = new HashMap<>();
+        try {
+            Double precioTotal = compraService.calcularPrecioUSD(calcularPrecio);
+            response.put("precioTotal", precioTotal);
+            return new ResponseEntity<HashMap<String, Object>>(response, HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }

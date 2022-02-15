@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseResponse } from 'src/shared/models/baseResponse.model';
@@ -30,14 +31,15 @@ export class CrearCuentaComponent implements OnInit {
     crearCuenta.mail                    = this.pMail;
     crearCuenta.nombreUsuario           = this.pNombreUsuario;
     crearCuenta.clave                   = this.pClave;
-    this.authService.crearCuenta(crearCuenta).subscribe((res:BaseResponse) => {
-      if(res.error){
-        this.estadoError  = true;
-        this.mensajeError = res.mensaje;
-      } else {
-        this.router.navigate(['/auth/login']);
-      }
-    });
+    this.authService.crearCuenta(crearCuenta).subscribe(
+      (res) => {
+        this.router.navigate(['/auth/login'], {state: {creoCuenta: true}});
+      },
+      (httpError:HttpErrorResponse) => {
+          let error:BaseResponse  = httpError.error;
+          this.estadoError        = true;
+          this.mensajeError       = error.mensaje;
+      });
   }
 
   iniciarSesion(){

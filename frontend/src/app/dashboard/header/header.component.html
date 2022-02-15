@@ -1,7 +1,8 @@
 <div style="height: max-content;background-color: #1c1c1c; " class="d-flex justify-content-between">
-    <div><img src="./fit.png"/></div>
+    <div><img style="height: 60px; padding: 5px 25px;" src="assets/img/unnamed.png"/></div>
     <div class="d-flex flex-column px-4 py-1">
         <h5 (click)="cerrarSesion()" style="color: var(--bs-yellow); cursor: pointer;" class="">CERRAR SESION </h5>
+        <div *ngIf="estadoError" class="border-danger bg-danger text-center text-light p-2">{{mensajeError}}</div>
         <h6 *ngIf="usuario" class="text-light">{{usuario.nombre}} {{usuario.apellido}} <span class="text-secondary">({{usuario.nombreUsuario}})</span></h6>
     </div>
 </div>

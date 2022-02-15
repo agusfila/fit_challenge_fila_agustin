@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from "./baseService.service";
 import { InicioSesionRequest } from "../models/inicioSesionRequest.model";
 import { CrearCuentaRequest } from "../models/crearCuentaRequest.model";
-import { BaseResponse } from "../models/baseResponse.model";
+import { InicioSesionResponse } from "../models/inicioSesionResponse.model";
 
 @Injectable({
     providedIn: 'root'
@@ -14,11 +14,11 @@ export class AuthService extends BaseService{
     }
 
     iniciarSesion(inicioSesionReq:InicioSesionRequest){
-        return this._http.post<BaseResponse>(this.apiUrl + '/login', inicioSesionReq, this.getHeaderOptions());
+        return this._http.post<InicioSesionResponse>(this.apiUrl + '/login', inicioSesionReq, this.getHeaderOptions());
     }
 
     crearCuenta(crearCuentaReq:CrearCuentaRequest){
-        return this._http.post<BaseResponse>(this.apiUrl + '/crear_cuenta', crearCuentaReq, this.getHeaderOptions());
+        return this._http.post<string>(this.apiUrl + '/crear_cuenta', crearCuentaReq, this.getHeaderOptions());
     }
 
     validarToken(){

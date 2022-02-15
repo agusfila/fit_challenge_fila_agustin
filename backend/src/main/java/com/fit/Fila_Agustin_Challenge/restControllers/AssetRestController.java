@@ -27,15 +27,14 @@ public class AssetRestController {
 
     @GetMapping("/listar")
     public ResponseEntity<Object> listarAssets(@RequestParam(required = false) Optional<String> iconSize){
-        Map<String, String> response    = new HashMap<>();
-        Gson gson                       = new Gson();
-        JSONObject json                 = new JSONObject();
+        HashMap<String, Object> response    = new HashMap<>();
+        Gson gson                           = new Gson();
         try {
             List<AssetModel> assets = assetService.listarAssets(iconSize.isPresent() ? iconSize.get() : "512");
             return new ResponseEntity(gson.toJson(assets), HttpStatus.ACCEPTED);
         } catch (Exception e){
-            json.put("mensaje", "Error: " + e.getMessage());
-            return new ResponseEntity(json.toString(), HttpStatus.BAD_REQUEST);
+            response.put("mensaje", e.getMessage());
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
 

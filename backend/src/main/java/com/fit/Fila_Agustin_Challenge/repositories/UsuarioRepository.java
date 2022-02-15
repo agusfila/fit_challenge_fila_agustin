@@ -17,7 +17,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
     @Query("SELECT a FROM Usuario a WHERE a.nombreUsuario = :nombreDeUsuario AND a.clave = :clave")
     Optional<Usuario> buscarPorCredenciales(@Path("nombreDeUsuario")String nombreDeUsuario, @Path("nombreDeUsuario")String clave);
 
-    @Query("SELECT a FROM Usuario a WHERE a.nombreUsuario = :mail")
+    @Query("SELECT a FROM Usuario a WHERE a.mail = :mail")
     Optional<Usuario> buscarPorMail(@Path("mail")String mail);
 
 }

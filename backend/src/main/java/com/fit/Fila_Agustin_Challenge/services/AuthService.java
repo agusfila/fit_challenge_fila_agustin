@@ -4,6 +4,7 @@ import com.fit.Fila_Agustin_Challenge.entities.Usuario;
 import com.fit.Fila_Agustin_Challenge.exceptions.CampoVacioException;
 import com.fit.Fila_Agustin_Challenge.exceptions.CrearCuentaException;
 import com.fit.Fila_Agustin_Challenge.exceptions.IniciarSesionException;
+import com.fit.Fila_Agustin_Challenge.exceptions.TokenException;
 import com.fit.Fila_Agustin_Challenge.models.CrearCuentaRequestModel;
 import com.fit.Fila_Agustin_Challenge.models.InicioSesionRequestModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,11 @@ public class AuthService {
         if(crearCuenta.getMail().equals(""))            throw new CampoVacioException("Falta completar el mail");
         if(crearCuenta.getNombreUsuario().equals(""))   throw new CampoVacioException("Falta completar el nombre de usuario");
         if(crearCuenta.getClave().equals(""))           throw new CampoVacioException("Falta completar la contraseña");
+        if(!this.validarMail(crearCuenta.getMail()))    throw new CrearCuentaException("El mail es invalido");
         Optional<Usuario> opUsuarioNombre   = usuarioService.buscarPorNombreDeUsuario(crearCuenta.getNombreUsuario());
         if(opUsuarioNombre.isPresent())                 throw new CrearCuentaException("Nombre de usuario ya en uso");
         Optional<Usuario> opUsuarioMail     = usuarioService.buscarPorMail(crearCuenta.getMail());
         if(opUsuarioMail.isPresent())                   throw new CrearCuentaException("Mail ya en uso");
-        if(!this.validarMail(crearCuenta.getMail()))    throw new CrearCuentaException("El mail es invalido");
     }
 
     private boolean validarMail(String unMail){
@@ -61,7 +62,7 @@ public class AuthService {
         return matcher.find();
     }
 
-    public boolean validarToken(String token){
-        return jwtService.validarToken(token);
+    public void validarToken(String token){
+        if(!jwtService.validarToken(token)) throw new TokenException("Token invalido");
     }
 }

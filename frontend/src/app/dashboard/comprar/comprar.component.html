@@ -1,4 +1,7 @@
 <div style="max-width: 1200px;" class="mx-auto bg-dark p-4">
+    <div *ngIf="error" class="border-danger bg-danger text-center rounded text-light py-2">
+        {{mensajeError}}
+    </div>
     <div  class=" row border-bottom border-light">
         <hr>
         <div class="col-md-6">
@@ -25,12 +28,8 @@
             <div class="col-md-6">
                 <input [(ngModel)]="pCantidad" type="number" class="form-control" (change)="setCantidad()" placeholder="Cantidad"/>
             </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-warning" (click)="comprarAsset()">Comprar</button>
-            </div>
-            <label id="precioEnUSD" class="text-light col-md-4"></label>
+            <app-modal-detalle-compra class="col-md-6" *ngIf="mostrarDetalleCompra" [nuevaCompra]="nuevaCompra"></app-modal-detalle-compra>
         </div>
     </div>
-    <app-modal-detalle-compra *ngIf="mostrarDetalleCompra" [compra]="ultimaCompra" class="text-center"></app-modal-detalle-compra>
 </div>
 <hr>

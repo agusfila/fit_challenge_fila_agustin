@@ -1,6 +1,5 @@
-import { BaseResponse } from "./baseResponse.model";
 
-export class InicioSesionResponse extends BaseResponse{
+export class InicioSesionResponse{
     public token:string;
     public idUsuario:string;
 }

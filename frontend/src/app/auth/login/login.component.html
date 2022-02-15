@@ -10,6 +10,9 @@
         <div *ngIf="estadoError" class="row rounded bg-danger border-danger text-center text-light m-4 p-2">
             <p class="m-0">{{ mensajeError }}</p>
         </div>
+        <div *ngIf="creoCuenta" class="row rounded bg-success border-success text-center text-light m-4 p-2">
+            <p class="m-0">Tu cuenta ha sido creada con exito! Inicie sesion</p>
+        </div>
         <div class="row align-items-center justify-content-center">
             <div class="mx-2 px-2 col-auto">
                 <button type="button" (click)="iniciarSesion()" class="btn text-light" style="background-color: var(--bs-yellow);">Iniciar Sesion</button>

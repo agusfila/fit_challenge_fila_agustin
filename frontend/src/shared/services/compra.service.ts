@@ -6,6 +6,8 @@ import { Compra } from "../models/compra.model";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
 import { CalcularPrecio } from "../models/calcularPrecio.model";
+import { CompraResponse } from "../models/compraResponse.model";
+import { CalcularPrecioResponse } from "../models/calcularPrecioResponse.model";
 
 @Injectable({
     providedIn: 'root'
@@ -15,15 +17,11 @@ export class CompraService extends BaseService{
         super('/compras');
     }
 
-    comprar(compra:NuevaCompra): Observable<Compra>{
-        return this._http.post<Compra>(this.apiUrl + '/comprar', compra, this.getHeaderTokenOptions());
+    comprar(compra:NuevaCompra): Observable<CompraResponse>{
+        return this._http.post<CompraResponse>(this.apiUrl + '/comprar', compra, this.getHeaderTokenOptions());
     }
 
-    calcularPrecio(calcularPrecio:CalcularPrecio): Observable<number>{
-        return this._http.post<number>(this.apiUrl + '/calcularPrecioUSD', calcularPrecio, this.getHeaderTokenOptions());
-    }
-
-    listarCompras(idUsuario:string): Observable<Array<Compra>>{
-        return this._http.post<Array<Compra>>(this.apiUrl + '/' + idUsuario, this.getHeaderTokenOptions());
+    calcularPrecio(calcularPrecio:CalcularPrecio): Observable<CalcularPrecioResponse>{
+        return this._http.post<CalcularPrecioResponse>(this.apiUrl + '/calcularPrecioUSD', calcularPrecio, this.getHeaderTokenOptions());
     }
 }

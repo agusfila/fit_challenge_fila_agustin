@@ -13,7 +13,7 @@ public class CoinApiSvc {
     private static CoinApiSvc instancia = null;
     private static int maximaCantidadRegistrosDefault = 200;
     private static final String urlApi = "https://rest.coinapi.io/v1/";
-    private static final String token = "6DE078B1-427D-4EAF-87A7-C0490BE4FE21";
+    private static final String token = "B70DD534-777A-49AE-BE58-C46FF24F33CF";
     private Retrofit retrofit;
 
 

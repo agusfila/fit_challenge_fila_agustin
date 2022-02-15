@@ -27,15 +27,14 @@ public class ExchangeRestController {
 
     @GetMapping("/listar")
     public ResponseEntity<Object> top3Exchanges(@RequestParam(required = false) Optional<String> iconSize) throws IOException {
-        Map<String, String> response    = new HashMap<>();
-        Gson gson                       = new Gson();
-        JSONObject json                 = new JSONObject();
+        HashMap<String, String> response    = new HashMap<>();
+        Gson gson                           = new Gson();
         try {
             List<ExchangeModel> exchanges = exchangeService.top3Exchanges(iconSize.isPresent() ? iconSize.get() : "512");
-            return new ResponseEntity<>(gson.toJson(exchanges), HttpStatus.ACCEPTED);
+            return new ResponseEntity<Object>(gson.toJson(exchanges), HttpStatus.ACCEPTED);
         } catch (Exception e){
-            json.put("mensaje", "Error: " + e.getMessage());
-            return new ResponseEntity(json.toString(), HttpStatus.BAD_REQUEST);
+            response.put("mensaje", e.getMessage());
+            return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
         }
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @RestController
@@ -20,11 +21,13 @@ public class UsuarioRestController {
 
     @GetMapping("/{idUsuario}")
     public ResponseEntity<Object> buscarPorId(@PathVariable("idUsuario")String idUsuario){
+        HashMap<String, Object> response = new HashMap<String, Object>();
         try {
             Optional<Usuario> opUsuario = usuarioService.buscarPorId(idUsuario);
             return new ResponseEntity<Object>(opUsuario.get(), HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            response.put("mensaje", e.getMessage());
+            return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
         }
     }
 }
