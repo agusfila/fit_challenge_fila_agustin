@@ -1,4 +1,4 @@
-# fit_challenge_fila_agustin
+# FIT Challenge Agustin Fila
 Trello: https://trello.com/b/dZx4mtlz/fit-challenge
 
 CONFIGURACION
