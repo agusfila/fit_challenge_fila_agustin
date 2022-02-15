@@ -9,7 +9,7 @@ BASE DE DATOS:
   -   Port: 3306
   -   username: root
   -   password: root
-- Una vez creada la conexion crear un 'schema' con el nombre *fit_challenge*, en el caso de crearlo con otro nombre se puede configurar el backend para que apunte otro 'schema', en el archivo *src/main/resources/application.properties* definir los siguientes atributos:
+- Una vez creada la conexion crear un 'schema' con el nombre *fit_challenge*, en el caso de crearlo con otro nombre se puede configurar el backend para que apunte otro 'schema', en el archivo **src/main/resources/application.properties** definir los siguientes atributos:
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/fit_challenge
 spring.datasource.username=root
@@ -19,7 +19,7 @@ spring.datasource.password=root
   - INSERT INTO 'fit_challenge'.'usuario' ('id', 'apellido', 'clave', 'mail', 'nombre', 'nombre_usuario') VALUES ('1', 'Fila', 'clave123', 'agusfila@gmail.com',    'Agustin', 'agusfila00');
 
 FRONTEND:
-  - En el archivo *proxy.conf.json* indicar el puerto en el que se levanta el backend (Por defecto: 8080)
+  - En el archivo **proxy.conf.json** indicar el puerto en el que se levanta el backend (Por defecto: 8080)
 ``` 
 {
   "/api/*": {
