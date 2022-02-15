@@ -1,5 +1,5 @@
 # FIT Challenge Agustin Fila
-Trello: https://trello.com/b/dZx4mtlz/fit-challenge
+- Trello: https://trello.com/b/dZx4mtlz/fit-challenge
 
 **CONFIGURACION**
 
