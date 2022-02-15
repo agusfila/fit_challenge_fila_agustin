@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "88668498-cfb6-4c90-9e86-a526024cff39",
+		"name": "FIT_Challenge_Fila_Agustin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listado Exchanges",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ3VzIiwiaWF0IjoxNjQ0OTU0NDU1LCJleHAiOjE2NDQ5NTQ5NTV9.Ciab8lfzxNah8M96zLbBYBAa_-wqz7vIYb-xVZN-4B4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/exchanges/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"exchanges",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listado Assets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ3VzIiwiaWF0IjoxNjQ0ODU4Mjc4LCJleHAiOjE2NDQ4NTg3Nzh9.spu6FgjO0LcCSokD50A90YRfmK2kAdrzjyi8nowQJ1I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreUsuario\":\"agus\",\r\n    \"clave\":\"titineta28\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/assets/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"assets",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreUsuario\":\"agus\",\r\n    \"clave\":\"titineta28\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "nombreUsuario",
+							"value": "agus",
+							"disabled": true
+						},
+						{
+							"key": "clave",
+							"value": "titineta28",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Cuenta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreUsuario\":\"agus\",\r\n    \"clave\":\"clave\",\r\n    \"nombre\": \"Agustin\",\r\n    \"apellido\": \"Fila\",\r\n    \"mail\": \"agusfila@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/auth/crear_cuenta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"auth",
+						"crear_cuenta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ3VzIiwiaWF0IjoxNjQ0OTU0NDU1LCJleHAiOjE2NDQ5NTQ5NTV9.Ciab8lfzxNah8M96zLbBYBAa_-wqz7vIYb-xVZN-4B4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/usuarios/402880927ef0016f017ef0049e340000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"usuarios",
+						"402880927ef0016f017ef0049e340000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comprar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ3VzIiwiaWF0IjoxNjQ0OTU0NDU1LCJleHAiOjE2NDQ5NTQ5NTV9.Ciab8lfzxNah8M96zLbBYBAa_-wqz7vIYb-xVZN-4B4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUsuario\": \"402880927ef0016f017ef0049e340000\",\r\n    \"asset_id\":\"USD\",\r\n    \"exchange_id\":\"BITMEX\",\r\n    \"comision\": 0.4,\r\n    \"cantidad\": 2.0,\r\n    \"valorUnitarioUSD\":3.0,\r\n    \"cantidadDolar\": 7.4\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/compras/comprar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"compras",
+						"comprar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validar Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ3VzIiwiaWF0IjoxNjQ0OTU0NTg3LCJleHAiOjE2NDQ5NTUwODd9.l1pOgmZ-oDfPRVO2tFpXFMV_m6JcdHjEanZcbLZt8MA\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{puerto}}/api/auth/validar_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"api",
+						"auth",
+						"validar_token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
