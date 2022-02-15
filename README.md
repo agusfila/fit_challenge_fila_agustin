@@ -15,7 +15,7 @@ BASE DE DATOS:
 
 FRONTEND:
   - En el archivo proxy.conf.json indicar el puerto en el que se levanta el backend (Por defecto: 8080)
-  - ``` {
+``` {
   "/api/*": {
     "target": "http://localhost:8080",
     "secure": false,
