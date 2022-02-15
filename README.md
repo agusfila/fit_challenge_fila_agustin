@@ -9,7 +9,7 @@ BASE DE DATOS:
   -   Port: 3306
   -   username: root
   -   password: root
-- Una vez creada la conexion crear un 'schema' con el nombre *fit_challenge*, en el caso de crearlo con otro nombre se puede configurar el backend para que apunte otro 'schema':
+- Una vez creada la conexion crear un 'schema' con el nombre *fit_challenge*, en el caso de crearlo con otro nombre se puede configurar el backend para que apunte otro 'schema', en el application properties definir los siguientes atributos:
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/fit_challenge
 spring.datasource.username=root
