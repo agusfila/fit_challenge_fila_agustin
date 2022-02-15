@@ -4,7 +4,7 @@ Trello: https://trello.com/b/dZx4mtlz/fit-challenge
 CONFIGURACION
 
 BASE DE DATOS:
- - Para que se cree la base hay que crear una connexion en el MySQL Workbench con los siguientes datos: 
+- Para que se cree la base hay que crear una connexion en el MySQL Workbench con los siguientes datos: 
   -   Hostname: localhost
   -   Port: 3306
   -   username: root
